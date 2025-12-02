@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> E - comerce </title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: white;
+  color: black;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color:black;
+  color: white;
+  padding: 15px 40px;
+}
+
+header .logo {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 20px;
+  font-weight: 500;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.hero {
+  text-align: center;
+  background: linear-gradient(135deg, blue, skyblue);
+  color: white;
+  padding: 60px 20px;
+}
+
+.products {
+  padding: 40px;
+  text-align: center;
+}
+
+.products h2 {
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+.product-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.product {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px black;
+  width: 250px;
+  padding: 20px;
+  transition: transform 0.3s ease;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+}
+
+.product img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 10px;
+  background: blue;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  background: skyblue;
+}
+
+.product-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  gap: 40px;
+}
+
+.product-details img {
+  max-width: 400px;
+  border-radius: 10px;
+}
+
+.details {
+  max-width: 400px;
+}
+
+.price {
+  font-size: 1.5em;
+  color: skyblue;
+  margin: 10px 0;
+}
+
+footer {
+  text-align: center;
+  background: black;
+  color: white;
+  padding: 15px;
+  margin-top: 50px;
+}
+</style>
+
+  <header>
+    <div class="logo"> S - mart</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#cart">Cart</a>
+      <a href="#checkout">Checkout</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Welcome to S - mart </h1>
+    <p>Your one-stop shop for fashion, electronics, and handmade crafts!</p>
+  </section>
+
+  <section class="products">
+    <h2>Featured Products</h2>
+    <div class="product-grid">
+      <div class="product">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAeE7tKXUw5fUFrFwjIai1dTxgDDJuarGbtIbgyPH6a4MVWeUh8YpHMLT-uUv_9-GTGBs&usqp=CAU.jpg" alt="T-Shirt" width="300" height="200">
+        <h3>Classic T-Shirt</h3>
+        <p>150.00 Rupees</p>
+        <a href="product.html" class="btn">View Product</a>
+      </div>
+      <div class="product">
+        <img src=" https://t4.ftcdn.net/jpg/15/24/60/01/360_F_1524600140_XrroOjQolINb8tKJ9yEq9kYjQMceqoTD.jpg" alt="Headphones"width="300" height="200">
+        <h3>Wireless Headphones</h3>
+        <p>950.00 Rupees</p>
+        <a href="product.html" class="btn">View Product</a>
+      </div>
+      <div class="product">
+        <img src="https://i.pinimg.com/1200x/7a/b5/0d/7ab50d17b4173cbe17c8c89c970b0cd6.jpg" alt="Sweater"width="300" height="200">
+        <h3>Sweater</h3>
+        <p>300 Rupees</p>
+        <a href="product.html" class="btn">View Product</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 S - mart All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
+
