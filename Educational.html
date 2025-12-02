@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Insights Blog</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", sans-serif;
+  line-height: 1.6;
+  background: White;
+  color: black;
+}
+
+header {
+  background: black;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav li {
+  margin: 0 15px;
+}
+
+nav a {
+  color:white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+article {
+  flex: 3;
+  background:white;
+  padding: 20px;
+  margin-right: 20px;
+  border-radius: 5px;
+}
+
+.featured-image {
+  width: 100%;
+  margin: 15px 0;
+  border-radius: 5px;
+}
+
+.category, .tag {
+  background: skyblue;
+  color: white;
+  padding: 3px 7px;
+  border-radius: 3px;
+  font-size: 0.9em;
+}
+
+aside {
+  flex: 1;
+  background:white;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+aside ul {
+  list-style: none;
+}
+
+aside ul li {
+  margin-bottom: 10px;
+}
+
+.tags a {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 8px;
+  background: white;
+  border-radius: 3px;
+  text-decoration: none;
+  color: black;
+  font-size: 0.9em;
+}
+
+.comments {
+  margin-top: 30px;
+}
+
+.comments ul {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.comments li {
+  background: white;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+#commentForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#commentForm input,
+#commentForm textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 4px;
+}
+
+#commentForm button {
+  background: skyblue;
+  color:white;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#commentForm button:hover {
+  background: skyblue;
+}
+
+footer {
+  text-align: center;
+  background:skyblue;
+  color:white;
+  padding: 15px 0;
+  margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  article {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+
+</style>
+<body>
+  <header>
+    <h1>Tech Insights Blog</h1>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">AI</a></li>
+        <li><a href="#">Cybersecurity</a></li>
+        <li><a href="#">Programming</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <h2>The Future of Artificial Intelligence</h2>
+      <p class="meta">By <strong>Jane Doe</strong> | Category: <span class="category">AI</span> | Tags: <span class="tag">Machine Learning</span>, <span class="tag">Automation</span></p>
+
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS17KBPizFZkxJlBlK2APMt1Ll2z3Ey5PsEQQ&s.jpg" alt="AI illustration "width="50"height="200" class="featured-image" />
+
+      <p>
+        Artificial Intelligence (AI) is revolutionizing industries across the globe.
+        From healthcare to transportation, AI is becoming an integral part of our
+        daily lives. In this article, we explore the advancements in AI and how they
+        will shape our future.
+      </p>
+
+      <p>
+        AI algorithms are now capable of learning patterns, predicting outcomes, and
+        even generating human-like text. However, ethical considerations remain a
+        major challenge. Balancing innovation with responsibility is key to ensuring
+        AI benefits all of humanity.
+      </p>
+
+      <section class="comments">
+        <h3>Comments</h3>
+        <ul id="commentList"></ul>
+
+        <form id="commentForm">
+          <input type="text" id="name" placeholder="Your Name" required />
+          <textarea id="comment" placeholder="Write a comment..." required></textarea>
+          <button type="submit">Post Comment</button>
+        </form>
+      </section>
+    </article>
+
+    <aside>
+      <h3>Categories</h3>
+      <ul>
+        <li><a href="#">AI</a></li>
+        <li><a href="#">Cybersecurity</a></li>
+        <li><a href="#">Programming</a></li>
+        <li><a href="#">Gadgets</a></li>
+      </ul>
+
+      <h3>Tags</h3>
+      <div class="tags">
+        <a href="#">Machine Learning</a>
+        <a href="#">Cloud</a>
+        <a href="#">Python</a>
+        <a href="#">Data Science</a>
+        <a href="#">Blockchain</a>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <p>&copy; 2025  Shubham gupt : learn and build your career</p>
+  </footer>
+</body>
+</html>
