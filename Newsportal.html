@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modern Times - Online Magazine</title>
+  <style>
+   
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: white;
+      color:black;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color:black;
+      color:white;
+      padding: 20px 40px;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2em;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      background-color:black;
+      display: flex;
+      justify-content: center;
+      padding: 10px;
+    }
+
+    nav a {
+      color:white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color:orange;
+    }
+
+   
+    .featured {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 30px auto;
+      max-width: 1200px;
+      gap: 20px;
+    }
+
+    .featured-article {
+      background:white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px black;
+      width: 350px;
+      overflow: hidden;
+      transition: transform 0.3s;
+    }
+
+    .featured-article:hover {
+      transform: translateY(-5px);
+    }
+
+    .featured-article img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .featured-article .content {
+      padding: 20px;
+    }
+
+    .featured-article h2 {
+      font-size: 1.3em;
+      color: black;
+      margin-bottom: 10px;
+    }
+
+    .featured-article p {
+      font-size: 0.95em;
+      color: brown;
+    }
+
+   
+    .categories {
+      background:white;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 30px auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px black;
+    }
+
+    .categories h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color:black;
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .category {
+      background:white;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .category:hover {
+      background:yellow;
+      color:white;
+    }
+
+    .subscribe {
+      background-color:black;
+      color:white;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 40px;
+    }
+
+    .subscribe h2 {
+      margin-bottom: 15px;
+    }
+
+    .subscribe form {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .subscribe input[type="email"] {
+      padding: 10px;
+      width: 250px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .subscribe button {
+      padding: 10px 20px;
+      background-color: orange;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .subscribe button:hover {
+      background-color:orange;
+    }
+
+    footer {
+      text-align: center;
+      background:black;
+      color:white;
+      padding: 15px;
+      font-size: 0.9em;
+      margin-top: 30px;
+    }
+
+   
+    @media (max-width: 768px) {
+      .featured-article {
+        width: 90%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Modern Times</h1>
+    <p>Your daily source of news, stories, and culture</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">World</a>
+    <a href="#">Technology</a>
+    <a href="#">Lifestyle</a>
+    <a href="#">Entertainment</a>
+    <a href="#">Contact</a>
+  </nav>
+
+  <section class="featured">
+    <div class="featured-article">
+      <img src="https://picsum.photos/400/200?tech" alt="Tech">
+      <div class="content">
+        <h2>Tech Revolution 2025</h2>
+        <p>Explore the latest innovations shaping the digital future — from AI breakthroughs to space technology.</p>
+      </div>
+    </div>
+
+    <div class="featured-article">
+      <img src="https://picsum.photos/400/200?fashion" alt="Lifestyle">
+      <div class="content">
+        <h2>Autumn Style Trends</h2>
+        <p>Discover what’s hot this season in fashion and lifestyle with our exclusive insider guide.</p>
+      </div>
+    </div>
+
+    <div class="featured-article">
+      <img src="https://picsum.photos/400/200?news" alt="World">
+      <div class="content">
+        <h2>Global Politics in Focus</h2>
+        <p>An in-depth analysis of the changing dynamics in global governance and diplomacy.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories">
+    <h2>Explore Topics</h2>
+    <div class="category-grid">
+      <div class="category">World News</div>
+      <div class="category">Technology</div>
+      <div class="category">Business</div>
+      <div class="category">Health</div>
+      <div class="category">Sports</div>
+      <div class="category">Entertainment</div>
+    </div>
+  </section>
+
+  <section class="subscribe">
+    <h2>Subscribe to Our Newsletter</h2>
+    <p>Stay updated with the latest stories and features from Modern Times.</p>
+    <form>
+      <input type="email" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 Modern Times Magazine. All rights reserved.
+  </footer>
+
+</body>
+</html>
