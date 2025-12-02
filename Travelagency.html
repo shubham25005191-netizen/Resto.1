@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wanderlust Travel Agency</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  color: Black;
+  line-height: 1.6;
+  background: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: green;
+  color: white;
+  padding: 15px 50px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav ul li {
+  margin-left: 25px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+nav ul li a:hover {
+  text-decoration: underline;
+}
+
+
+.hero {
+  background: url('https://source.unsplash.com/1600x600/?travel,landscape') center/cover no-repeat;
+  color: white;
+  text-align: center;
+  padding: 120px 20px;
+}
+
+.hero h1 {
+  font-size: 2.8em;
+  margin-bottom: 15px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  margin-bottom: 25px;
+}
+
+.btn {
+  background: yellow;
+  color: black;
+  padding: 12px 25px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.btn:hover {
+  background: orange;
+}
+
+
+.packages {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.packages h2 {
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+.package-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.package {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px black;
+  width: 300px;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+.package:hover {
+  transform: scale(1.05);
+}
+
+.package img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.package h3 {
+  margin: 15px 0 10px;
+  color: Green;
+}
+
+.package p {
+  padding: 0 15px;
+  font-size: 0.95em;
+}
+
+.package span {
+  display: block;
+  margin: 15px;
+  font-weight: bold;
+  color: orange;
+}
+
+
+.booking {
+  background: White;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.booking h2 {
+  margin-bottom: 25px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+form input, form button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
+form button {
+  background: green;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+form button:hover {
+  background: green;
+}
+
+
+.tips {
+  padding: 60px 20px;
+  background:white;
+  text-align: center;
+}
+
+.tips-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.tip {
+  background:white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+  transition: 0.3s;
+}
+
+.tip:hover {
+  background: white;
+}
+
+
+.gallery {
+  padding: 60px 20px;
+  text-align: center;
+  background: white;
+}
+
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.gallery-container img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.gallery-container img:hover {
+  transform: scale(1.05);
+}
+
+
+footer {
+  background: lighgreen;
+  color: white;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9em;
+  margin-top: 30px;
+}
+
+</style>
+<body>
+  <header>
+    <div class="logo">🌴 Wanderful Travels</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#packages">Tour Packages</a></li>
+        <li><a href="#booking">Booking</a></li>
+        <li><a href="#tips">Travel Tips</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="home" class="hero">
+    <p>Your adventure begins here. Find amazing destinations and unforgettable experiences!</p>
+    <a href="#packages" class="btn">Discover Packages</a>
+  </section>
+
+  <section id="packages" class="packages">
+    <h2>Our Tour Packages</h2>
+    <div class="package-container">
+      <div class="package">
+        <img src="https://img.freepik.com/premium-photo/view-paris-france_110893-1675.jpg" alt="Paris">
+        <h3>Romantic Paris Getaway</h3>
+        <p>5 Days / 4 Nights - Explore the City of Love, Eiffel Tower & Seine Cruise.</p>
+        <span>Nineteen thousand</span>
+      </div>
+
+      <div class="package">
+        <img src="https://etimg.etb2bimg.com/photo/115997634.cms.jpg" alt="Bali">
+        <h3>Bali Beach Escape</h3>
+        <p>7 Days / 6 Nights - Relax on stunning beaches and enjoy tropical adventures.</p>
+        <span> Fifteen thousand</span>
+      </div>
+
+      <div class="package">
+        <img src="https://cdn.britannica.com/65/162465-050-9CDA9BC9/Alps-Switzerland.jpg" alt="Switzerland">
+        <h3>Swiss Alps Adventure</h3>
+        <p>6 Days / 5 Nights - Experience breathtaking mountain views and cozy chalets.</p>
+        <span> Nine thousand </span>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking" class="booking">
+    <h2>Book Your Dream Trip</h2>
+    <form>
+      <input type="text" placeholder="Full Name" required>
+      <input type="email" placeholder="Email" required>
+      <input type="text" placeholder="Destination" required>
+      <input type="date" required>
+      <button type="submit">Book Now</button>
+    </form>
+  </section>
+
+  <section id="tips" class="tips">
+    <h2>Travel Tips</h2>
+    <div class="tips-container">
+      <div class="tip">
+        <h3>✈️ Pack Smart</h3>
+        <p>Roll your clothes and pack light to save space and reduce luggage weight.</p>
+      </div>
+      <div class="tip">
+        <h3>Rupees matters</h3>
+        <p>Always keep some local cash handy for small shops and tips.</p>
+      </div>
+      <div class="tip">
+        <h3>📱 Stay Connected</h3>
+        <p>Get a local SIM card or portable Wi-Fi for easy navigation and communication.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="gallery">
+    <h2>Travel Gallery</h2>
+    <div class="gallery-container">
+      <img src="https://www.shutterstock.com/image-photo/maldives-paradise-island-tropical-aerial-260nw-2466899239.jpg" alt="Maldives">
+      <img src="https://t4.ftcdn.net/jpg/02/51/12/11/360_F_251121174_5xQyUCqSrkswyLHbM9Ne8DQ8Qb0o1HGw.jpg" alt="Tokyo">
+      <img src="https://thumbs.dreamstime.com/b/rome-italy-colosseum-coliseum-sunrise-144201572.jpg" alt="Rome">
+      <img src="https://www.shutterstock.com/image-photo/lonely-saleboat-nile-river-ancient-260nw-2459270941.jpg" alt="Egypt">
+      <img src="https://thumbs.dreamstime.com/b/statue-liberty-new-york-city-skyline-16070453.jpg" alt="New York">
+      <img src="https://thumbs.dreamstime.com/b/sydney-opera-house-australia-14210813.jpg" alt="Australia">
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Wanderful Travel Agency | Designed with ❤️ for travelers</p>
+  </footer>
+</body>
+</html>
