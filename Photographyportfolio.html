@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photography Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<style>
+  
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  color: Brown;
+}
+
+
+header {
+  background:black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav ul li {
+  margin-left: 1.5rem;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color:white;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: lightyellow;
+}
+
+
+.hero {
+  background: url('https://media.istockphoto.com/id/1186214696/photo/hindu-wedding-ritual-wherein-bride-and-groom-hand.jpg?s=612x612&w=0&k=20&c=fTlNejRdY7dkvk742auNgI3j6Ve9UqqWSnb3QJ-D2gw=') center/cover no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding-top: 60px;
+}
+
+.hero-text h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.hero-text p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn {
+  background: yellow;
+  color:black;
+  padding: 0.8rem 1.5rem;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 4px;
+}
+
+.btn:hover {
+  background: yellow;
+}
+
+
+.portfolio {
+  padding: 4rem 2rem;
+  text-align: center;
+  background: white;
+}
+
+.portfolio h2 {
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.category h3 {
+  margin-bottom: 0.5rem;
+}
+
+.category img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.4s;
+}
+
+.category img:hover {
+  transform: scale(1.05);
+}
+
+
+.about {
+  padding: 4rem 2rem;
+  text-align: center;
+  background:white;
+}
+
+.about h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+
+.book {
+  padding: 4rem 2rem;
+  background:white;
+  text-align: center;
+}
+
+.book form {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.book label {
+  text-align: left;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.book input,
+.book select,
+.book textarea {
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid lightyellow;
+  border-radius: 4px;
+}
+
+.book button {
+  background: black;
+  color: white;
+  padding: 0.8rem;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 4px;
+}
+
+.book button:hover {
+  background:orange;
+  color: black;
+}
+
+
+footer {
+  background:black;
+  color:white;
+  text-align: center;
+  padding: 1rem;
+}
+
+</style>
+<body>
+  
+  <header>
+    <div class="logo"> Photography</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#book">Book a Session</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <section id="home" class="hero">
+    <div class="hero-text">
+      <h1>Capturing Moments, Creating Memories</h1>
+      <p>Professional photography that tells your story.</p>
+      <a href="#portfolio" class="btn">View My Work</a>
+    </div>
+  </section>
+
+  
+  <section id="portfolio" class="portfolio">
+    <h2>Portfolio</h2>
+    <div class="gallery">
+      <div class="category">
+        <h3>Wedding Photography</h3>
+        <img src="https://sp-ao.shortpixel.ai/client/to_auto,q_lossy,ret_img/https://www.ptaufiqphotography.com/wp-content/uploads/2024/06/ptaufiq-indian-wedding-rajkot-India-ceremony-couple-portraits.jpg" alt="Wedding"width="300" height="20">
+      </div>
+      <div class="category">
+        <h3>Nature Photography</h3>
+        <img src="https://thumbs.dreamstime.com/b/environment-earth-day-hands-trees-growing-seedlings-bokeh-green-background-female-hand-holding-tree-nature-field-118143566.jpg" alt="Nature"width="300" height="20">
+      </div>
+      <div class="category">
+        <h3>Portrait Photography</h3>
+        <img src="https://iso.500px.com/wp-content/uploads/2020/08/stock-photo-240662573.jpg" alt="Portrait"width="300" height="20">
+      </div>
+      <div class="category">
+        <h3>Urban Photography</h3>
+        <img src="https://c8.alamy.com/comp/HACH6D/stunning-sunset-from-the-top-of-the-rock-at-rockefeller-center-HACH6D.jpg" alt="Urban"width="300" height="20">
+      </div>
+    </div>
+  </section>
+
+ 
+  <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>
+      Hi, I am Alex — a passionate photographer with over 8 years of experience capturing people, places, and emotions through my lens. 
+      I believe every photo tells a story, and my mission is to make yours unforgettable.
+    </p>
+  </section>
+
+  
+  <section id="book" class="book">
+    <h2>Book a Session</h2>
+    <form>
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Your Name" required>
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="Your Email" required>
+
+      <label for="type">Session Type</label>
+      <select id="type" required>
+        <option value="">Select</option>
+        <option>Wedding</option>
+        <option>Portrait</option>
+        <option>Nature</option>
+        <option>Urban</option>
+      </select>
+
+      <label for="message">Additional Details</label>
+      <textarea id="message" rows="4" placeholder="Write your message..."></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </section>
+
+ 
+  <footer>
+    <p>&copy; 2025  Photography | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
