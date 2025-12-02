@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)file:///C:/Users/shiva/OneDrive/Desktop/realllll.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Homing.com — Find Your Next Home</title>
+<meta name="description" content="Homing.com — modern property search inspired by
+housing.com. Search listings, filter results, and inquire.">
+<link href="./Homing.com — Find Your Next Home_files/css2" rel="stylesheet">
+<style>
+ :root{
+ --bg:#0f1724;
+ --glass: rgba(255,255,255,0.06);
+ --card:#0b1220;
+ --muted: #9aa4b2;
+ --accent1: #6a5cff;
+ --accent2: #00d4ff;
+ --accent-cta: linear-gradient(90deg,var(--accent1),#7b6bff 45%, #00d4ff);
+ --radius:18px;
+ color-scheme: dark;
+ }
+ *{box-sizing:border-box}
+ html,body{height:100%}
+ body{
+ margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+ background: radial-gradient(1200px 600px at 10% 10%, rgba(106,92,255,0.12), transparent
+12%),
+ radial-gradient(900px 500px at 90% 90%, rgba(0,212,255,0.06), transparent 12%),
+ linear-gradient(180deg,#071027 0%, #041223 100%);
+ color:#e6eef8;
+ -webkit-font-smoothing:antialiased;
+ -moz-osx-font-smoothing:grayscale;
+ }
+ /* Header */
+ header {
+ display:flex; align-items:center; justify-content:space-between;
+ padding:18px 28px; gap:12px;
+ position:sticky; top:0; z-index:50;
+ backdrop-filter: blur(8px);
+ background: linear-gradient(180deg, rgba(7,16,39,0.35), rgba(7,16,39,0.12));
+ border-bottom: 1px solid rgba(255,255,255,0.03);
+ }
+ .brand {
+ display:flex; align-items:center; gap:14px;
+ }
+ .logo {
+ width:52px; height:52px; border-radius:12px;
+ background:var(--accent-cta); display:flex; align-items:center; justify-content:center; fontweight:800; color:white;
+ font-size:20px; box-shadow:0 10px 30px rgba(106,92,255,0.14);
+ }
+ .brand h1{margin:0;font-size:18px;letter-spacing:0.3px}
+ .brand p{margin:0;font-size:12px;color:var(--muted)}
+ nav{display:flex; gap:12px; align-items:center}
+ .nav-link{color:var(--muted); font-weight:600; font-size:14px; padding:8px 12px; borderradius:10px; text-decoration:none}
+ .nav-link:hover{color:white; background:rgba(255,255,255,0.02)}
+ /* Hero */
+ .hero{
+ max-width:1180px; margin:28px auto 16px; padding:28px; border-radius:20px;
+ background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+ box-shadow: 0 20px 60px rgba(2,6,23,0.5), 0 6px 20px rgba(106,92,255,0.06);
+ display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:center;
+ }
+ @media (max-width:980px){ .hero{grid-template-columns:1fr; padding:20px} .hero-right{order:-1}
+}
+ .hero-left h2{margin:0; font-size:38px; line-height:1.02; letter-spacing:-0.6px}
+ .hero-left p{color:var(--muted); margin-top:10px; font-size:15px}
+ .search-hero{
+ margin-top:20px; background: linear-gradient(90deg, rgba(255,255,255,0.02),
+rgba(255,255,255,0.01));
+ padding:18px; border-radius:14px; display:flex; gap:12px; align-items:center;
+ box-shadow:0 10px 30px rgba(3,8,20,0.45);
+ }
+ .search-hero input, .search-hero select{
+ background:transparent; border:0; outline:none; color:inherit; font-size:15px;
+ padding:10px 12px; border-radius:10px;
+ }
+ .search-left{display:flex; gap:8px; align-items:center; flex:1}
+ .pill{background:rgba(255,255,255,0.03); padding:10px 12px; border-radius:12px; display:flex;
+gap:8px; align-items:center; min-width:160px}
+ .search-btn{
+ background:var(--accent-cta); border:0; padding:12px 18px; border-radius:12px; color:white;
+font-weight:700; cursor:pointer;
+ box-shadow: 0 12px 30px rgba(106,92,255,0.18);
+ }
+ .hero-right{display:flex; flex-direction:column; gap:12px; align-items:stretch}
+ .city-grid{display:grid; grid-template-columns: repeat(2,1fr); gap:10px}
+ .city-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+padding:12px; border-radius:12px; text-align:left}
+ .city-card h4{margin:0;font-size:14px}
+ .city-card p{margin:4px 0 0 0; color:var(--muted); font-size:13px}
+ /* Main layout */
+ .main{max-width:1180px; margin:18px auto; padding:0 20px; display:grid; grid-templatecolumns:300px 1fr; gap:22px;}
+ @media (max-width:980px){ .main{grid-template-columns:1fr} .filters{order:2} .listings{order:1} }
+ /* Sliding filters */
+ .filters{
+ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+ padding:16px; border-radius:14px; height:fit-content;
+ position:sticky; top:86px;
+ }
+ .filters h3{margin:0 0 8px 0}
+ .field{margin-bottom:12px}
+ .input, select{width:100%; padding:10px; border-radius:10px; border:1px solid
+rgba(255,255,255,0.03); background:transparent; color:inherit}
+ /* Listings */
+ .list-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:12px}
+ .sort-select{background:transparent; border:1px solid rgba(255,255,255,0.03); padding:8px 10px;
+border-radius:10px}
+ .cards{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+ @media (max-width:900px){ .cards{grid-template-columns:1fr} }
+ .card{
+ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+ border-radius:16px; overflow:hidden; display:flex; gap:14px; padding:12px; align-items:stretch;
+ transition: transform .25s ease, box-shadow .25s ease;
+ box-shadow: 0 12px 30px rgba(2,6,23,0.45);
+ }
+ .card:hover{ transform: translateY(-6px); box-shadow: 0 26px 60px rgba(2,6,23,0.55); }
+ .card img{width:290px; height:180px; object-fit:cover; border-radius:12px}
+ .card-body{flex:1; display:flex; flex-direction:column; gap:8px}
+ .prop-title{font-weight:700; margin:0; font-size:16px}
+ .prop-meta{color:var(--muted); font-size:13px}
+ .prop-row{display:flex; gap:8px; flex-wrap:wrap}
+ .chip{background:rgba(255,255,255,0.03); padding:6px 8px; border-radius:999px; font-size:13px}
+ .price{font-weight:800; font-size:18px; background:linear-gradient(90deg,#ffd166,#ff6b6b); -
+webkit-background-clip:text; color:transparent; margin-top:auto}
+ .card-actions{display:flex; gap:8px; align-items:center}
+ .btn-ghost{background:transparent; border:1px solid rgba(255,255,255,0.04); padding:8px 12px;
+border-radius:10px; color:var(--muted); cursor:pointer}
+ .btn-primary{background:var(--accent-cta); border:0; padding:10px 14px; border-radius:10px;
+color:white; cursor:pointer; font-weight:700}
+ /* Floating inquiry */
+ .float-inquire{
+ position:fixed; right:20px; bottom:22px; z-index:60; display:flex; gap:10px; align-items:center;
+ background: linear-gradient(90deg,#6a5cff,#00d4ff); color:white; padding:12px 16px; borderradius:999px; box-shadow:0 18px 40px rgba(6,10,30,0.6);
+ }
+ .float-inquire .dot{width:10px;height:10px;background:white;border-radius:999px}
+ /* Footer */
+ footer{max-width:1180px;margin:28px auto;padding:18px;color:var(--muted);textalign:center;font-size:13px}
+ /* Modal */
+ .modal-backdrop{position:fixed; inset:0; display:none; align-items:center; justify-content:center;
+background:rgba(2,6,23,0.6); z-index:80}
+ .modal{width:94%; max-width:560px; background:linear-gradient(180deg,#071026,#041226);
+padding:18px; border-radius:14px; box-shadow:0 30px 80px rgba(2,6,23,0.8)}
+ .modal h3{margin:0 0 6px 0}
+ .modal .field{margin-bottom:12px}
+ .close-x{background:transparent;border:0;color:var(--muted);font-size:20px;cursor:pointer}
+ /* small */
+ .muted{color:var(--muted)}
+</style>
+</head>
+<body>
+<header>
+ <div class="brand" aria-hidden="">
+ <div class="logo">H</div>
+ <div>
+ <h1>Homing.com</h1>
+ <p>Find it. Love it. Home it.</p>
+ </div>
+ </div>
+ <nav aria-label="Main navigation">
+ <a class="nav-link" href="file:///C:/Users/shiva/OneDrive/Desktop/realllll.html#">Buy</a>
+ <a class="nav-link" href="file:///C:/Users/shiva/OneDrive/Desktop/realllll.html#">Rent</a>
+ <a class="nav-link" href="file:///C:/Users/shiva/OneDrive/Desktop/realllll.html#">Projects</a>
+ <a class="nav-link" href="file:///C:/Users/shiva/OneDrive/Desktop/realllll.html#">Agents</a>
+ <a class="nav-link" href="file:///C:/Users/shiva/OneDrive/Desktop/realllll.html#">Help</a>
+ </nav>
+</header>
+<!-- HERO -->
+<section class="hero" role="region" aria-label="Search properties at Homing.com">
+ <div class="hero-left">
+ <h2>Find properties, verified listings and trusted agents — all in one place.</h2>
+ <p>Explore thousands of homes across top cities. Advanced filters, instant inquiries, and 360°
+views — discover your next move with Homing.com.</p>
+ <div class="search-hero" role="search" aria-label="Property search">
+ <div class="search-left">
+ <div class="pill">
+ <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden=""><path d="M21
+21l-4.35-4.35" stroke="white" stroke-width="1.6" stroke-linecap="round"></path><circle cx="11"
+cy="11" r="6" stroke="white" stroke-width="1.6"></circle></svg>
+ <input id="q" placeholder="Search for city, locality, project (e.g., Gurgaon, Golf Course
+Road)" aria-label="Search input">
+ </div>
+ <select id="type" class="pill" aria-label="Property type">
+ <option value="">Any type</option>
+ <option>Apartment</option>
+ <option>House</option>
+ <option>Villa</option>
+ <option>Plot</option>
+ </select>
+ <select id="beds" class="pill" aria-label="Bedrooms">
+ <option value="">Any beds</option>
+ <option value="1">1+ BHK</option>
+ <option value="2">2+ BHK</option>
+ <option value="3">3+ BHK</option>
+ <option value="4">4+ BHK</option>
+ </select>
+ </div>
+ <button id="searchBtn" class="search-btn" aria-label="Search properties">Search</button>
+ </div>
+ <div style="display:flex; gap:10px; margin-top:12px">
+ <button class="btn-ghost" id="openFilters">Advanced Filters</button>
+ <button class="btn-primary" id="exploreBtn">Explore Projects</button>
+ </div>
+ </div>
+ <aside class="hero-right" aria-hidden="">
+ <div style="display:flex; justify-content:space-between; align-items:center">
+ <h3 style="margin:0">Top cities</h3>
+ <div class="muted">Popular searches</div>
+ </div>
+ <div class="city-grid">
+ <div class="city-card">
+ <h4>Gurgaon</h4>
+ <p class="muted">Apartments • Villas</p>
+ </div>
+ <div class="city-card">
+ <h4>Noida</h4>
+ <p class="muted">New launches</p>
+ </div>
+ <div class="city-card">
+ <h4>Ghaziabad</h4>
+ <p class="muted">Affordable homes</p>
+ </div>
+ <div class="city-card">
+ <h4>Delhi</h4>
+ <p class="muted">Investment hotspots</p>
+ </div>
+ </div>
+ </aside>
+</section>
+<!-- MAIN -->
+<main class="main">
+ <!-- FILTERS (left) -->
+ <div class="filters" id="filterPanel" aria-label="Filters">
+ <h3>Filters</h3>
+ <div class="field">
+ <label class="muted">Budget (Lacs)</label>
+ <div style="display:flex; gap:8px">
+ <input id="minPrice" class="input" placeholder="Min">
+ <input id="maxPrice" class="input" placeholder="Max">
+ </div>
+ </div>
+ <div class="field">
+ <label class="muted">Sort by</label>
+ <select id="sort" class="input">
+ <option value="relevance">Relevance</option>
+ <option value="price-asc">Price: Low High</option>
+ <option value="price-desc">Price: High Low</option>
+ </select>
+ </div>
+ <div class="field">
+ <label class="muted">Amenities</label>
+ <div style="display:flex; gap:8px; flex-wrap:wrap">
+ <button class="btn-ghost amenity" data-amenity="parking">Parking</button>
+ <button class="btn-ghost amenity" data-amenity="pool">Pool</button>
+ <button class="btn-ghost amenity" data-amenity="gym">Gym</button>
+ <button class="btn-ghost amenity" data-amenity="garden">Garden</button>
+ </div>
+ </div>
+ <div style="display:flex; gap:8px; margin-top:10px">
+ <button class="btn-primary" id="apply">Apply</button>
+ <button class="btn-ghost" id="reset">Reset</button>
+ </div>
+ </div>
+ <!-- LISTINGS (right) -->
+ <section class="listings">
+ <div class="list-head">
+ <div>
+ <h3 style="margin:0">Featured Listings</h3>
+ <div class="muted" id="resultCount">Showing 8 of 8 results</div>
+ </div>
+ <div>
+ <select id="perPage" class="sort-select" aria-label="Results per page">
+ <option value="4">4</option><option value="8" selected="">8</option><option
+value="12">12</option>
+ </select>
+ </div>
+ </div>
+ <div id="cards" class="cards" aria-live="polite"><article class="card">
+ <img src="./Homing.com — Find Your Next Home_files/images" alt="3 BHK Premium
+Apartment — Golf Course Road" loading="lazy">
+ <div class="card-body">
+ <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+ <div>
+ <h4 class="prop-title">3 BHK Premium Apartment — Golf Course Road</h4>
+ <div class="prop-meta">Gurgaon • 1450 sqft</div>
+ </div>
+ <div style="text-align:right">
+ <div class="price"> 1.25 Cr</div>
+ <div class="muted" style="font-size:13px">3 BHK</div>
+ </div>
+ </div>
+ <div class="prop-row" style="margin-top:8px">
+ <span class="chip">Pool</span><span class="chip">Gym</span>
+ <span class="chip">1450 sqft</span>
+ </div>
+ <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px">
+ <div class="card-actions">
+ <button class="btn-ghost view" data-id="1">View</button>
+ <button class="btn-ghost save" data-id="1">Save</button>
+ </div>
+ <div>
+ <button class="btn-primary inquire" data-id="1">Inquire</button>
+ </div>
+ </div>
+ </div>
+ </article><article class="card">
+ <img src="./Homing.com — Find Your Next Home_files/images(1)" alt="2 BHK Modern Home
+near Metro" loading="lazy">
+ <div class="card-body">
+ <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+ <div>
+ <h4 class="prop-title">2 BHK Modern Home near Metro</h4>
+ <div class="prop-meta">Noida • 980 sqft</div>
+ </div>
+ <div style="text-align:right">
+ <div class="price"> 68 L</div>
+ <div class="muted" style="font-size:13px">2 BHK</div>
+ </div>
+ </div>
+ <div class="prop-row" style="margin-top:8px">
+ <span class="chip">Parking</span>
+ <span class="chip">980 sqft</span>
+ </div>
+ <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px">
+ <div class="card-actions">
+ <button class="btn-ghost view" data-id="2">View</button>
+ <button class="btn-ghost save" data-id="2">Save</button>
+ </div>
+ <div>
+ <button class="btn-primary inquire" data-id="2">Inquire</button>
+ </div>
+ </div>
+ </div>
+ </article><article class="card">
+ <img src="./Homing.com — Find Your Next Home_files/775b0365-cada-4429-a3b4-
+624221e52192.webp" alt="4 BHK Luxury Villa with Garden" loading="lazy">
+ <div class="card-body">
+ <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+ <div>
+ <h4 class="prop-title">4 BHK Luxury Villa with Garden</h4>
+ <div class="prop-meta">Ghaziabad • 2600 sqft</div>
+ </div>
+ <div style="text-align:right">
+ <div class="price"> 2.60 Cr</div>
+ <div class="muted" style="font-size:13px">4 BHK</div>
+ </div>
+ </div>
+ <div class="prop-row" style="margin-top:8px">
+ <span class="chip">Garden</span><span class="chip">Parking</span>
+ <span class="chip">2600 sqft</span>
+ </div>
+ <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px">
+ <div class="card-actions">
+ <button class="btn-ghost view" data-id="3">View</button>
+ <button class="btn-ghost save" data-id="3">Save</button>
+ </div>
+ <div>
+ <button class="btn-primary inquire" data-id="3">Inquire</button>
+ </div>
+ </div>
+ </div>
+ </article><article class="card">
+ <img src="./Homing.com — Find Your Next Home_files/istockphoto-954121470-612x612.jpg"
+alt="1 BHK Cozy Studio — Investment Special" loading="lazy">
+ <div class="card-body">
+ <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+ <div>
+ <h4 class="prop-title">1 BHK Cozy Studio — Investment Special</h4>
+ <div class="prop-meta">Delhi • 450 sqft</div>
+ </div>
+ <div style="text-align:right">
+ <div class="price"> 34 L</div>
+ <div class="muted" style="font-size:13px">1 BHK</div>
+ </div>
+ </div>
+ <div class="prop-row" style="margin-top:8px">
+
+ <span class="chip">450 sqft</span>
+ </div>
+ <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px">
+ <div class="card-actions">
+ <button class="btn-ghost view" data-id="4">View</button>
+ <button class="btn-ghost save" data-id="4">Save</button>
+ </div>
+ <div>
+ <button class="btn-primary inquire" data-id="4">Inquire</button>
+ </div>
+ </div>
+ </div>
+ </article><article class="card">
+ <img src="./Homing.com — Find Your Next Home_files/images(2)" alt="Sea-facing 3 BHK —
+Premium Project" loading="lazy">
+ <div class="card-body">
+ <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+ <div>
+ <h4 class="prop-title">Sea-facing 3 BHK — Premium Project</h4>
+ <div class="prop-meta">Gurgaon • 1800 sqft</div>
+ </div>
+ <div style="text-align:right">
+ <div class="price"> 3.20 Cr</div>
+ <div class="muted" style="font-size:13px">3 BHK</div>
+ </div>
+ </div>
+ <div class="prop-row" style="margin-top:8px">
+ <span class="chip">Pool</span><span class="chip">Gym</span>
+ <span class="chip">1800 sqft</span>
+ </div>
+ <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px">
+ <div class="card-actions">
+ <button class="btn-ghost view" data-id="5">View</button>
+ <button class="btn-ghost save" data-id="5">Save</button>
+ </div>
+ <div>
+ <button class="btn-primary inquire" data-id="5">Inquire</button>
+ </div>
+ </div>
+ </div>
+ </article><article class="card">
+ <img src="./Homing.com — Find Your Next Home_files/650835575M-1758531168578.jpg"
+alt="Independent House 4BHK — Spacious" loading="lazy">
+ <div class="card-body">
+ <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+ <div>
+ <h4 class="prop-title">Independent House 4BHK — Spacious</h4>
+ <div class="prop-meta">Ghaziabad • 2200 sqft</div>
+ </div>
+ <div style="text-align:right">
+ <div class="price"> 1.95 Cr</div>
+ <div class="muted" style="font-size:13px">4 BHK</div>
+ </div>
+ </div>
+ <div class="prop-row" style="margin-top:8px">
+ <span class="chip">Parking</span><span class="chip">Garden</span>
+ <span class="chip">2200 sqft</span>
+ </div>
+ <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px">
+ <div class="card-actions">
+ <button class="btn-ghost view" data-id="6">View</button>
+ <button class="btn-ghost save" data-id="6">Save</button>
+ </div>
+ <div>
+ <button class="btn-primary inquire" data-id="6">Inquire</button>
+ </div>
+ </div>
+ </div>
+ </article><article class="card">
+ <img src="./Homing.com — Find Your Next Home_files/images(3)" alt="Contemporary 2 BHK
+— Close to Schools" loading="lazy">
+ <div class="card-body">
+ <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+ <div>
+ <h4 class="prop-title">Contemporary 2 BHK — Close to Schools</h4>
+ <div class="prop-meta">Noida • 1100 sqft</div>
+ </div>
+ <div style="text-align:right">
+ <div class="price"> 78 L</div>
+ <div class="muted" style="font-size:13px">2 BHK</div>
+ </div>
+ </div>
+ <div class="prop-row" style="margin-top:8px">
+ <span class="chip">Gym</span>
+ <span class="chip">1100 sqft</span>
+ </div>
+ <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px">
+ <div class="card-actions">
+ <button class="btn-ghost view" data-id="7">View</button>
+ <button class="btn-ghost save" data-id="7">Save</button>
+ </div>
+ <div>
+ <button class="btn-primary inquire" data-id="7">Inquire</button>
+ </div>
+ </div>
+ </div>
+ </article><article class="card">
+ <img src="./Homing.com — Find Your Next Home_files/644724763M-1757416679642.webp"
+alt="Plot 200 Sq Yd — Prime Location" loading="lazy">
+ <div class="card-body">
+ <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+ <div>
+ <h4 class="prop-title">Plot 200 Sq Yd — Prime Location</h4>
+ <div class="prop-meta">Faridabad • 200 sq yd</div>
+ </div>
+ <div style="text-align:right">
+ <div class="price"> 45 L</div>
+ <div class="muted" style="font-size:13px"></div>
+ </div>
+ </div>
+ <div class="prop-row" style="margin-top:8px">
+
+ <span class="chip">200 sq yd</span>
+ </div>
+ <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px">
+ <div class="card-actions">
+ <button class="btn-ghost view" data-id="8">View</button>
+ <button class="btn-ghost save" data-id="8">Save</button>
+ </div>
+ <div>
+ <button class="btn-primary inquire" data-id="8">Inquire</button>
+ </div>
+ </div>
+ </div>
+ </article></div>
+ <div style="display:flex; justify-content:center; margin-top:18px">
+ <button class="btn-ghost" id="loadMore" style="display: none;">Load more</button>
+ </div>
+ </section>
+</main>
+<!-- Floating inquiry -->
+<button class="float-inquire" id="quickInquire" aria-label="Quick inquire">
+ <div style="display:flex; align-items:center; gap:10px">
+ <div style="font-weight:700">Inquire</div>
+ <div class="muted" style="font-size:13px">Ask about a property</div>
+ </div>
+</button>
+<!-- Inquiry Modal -->
+<div id="modal" class="modal-backdrop" role="dialog" aria-hidden="true">
+ <div class="modal" role="document">
+ <div style="display:flex; justify-content:space-between; align-items:center">
+ <h3>Send an inquiry</h3>
+ <button class="close-x" id="closeModal"></button>
+ </div>
+ <form id="inqForm" style="margin-top:12px">
+ <div class="field">
+ <label class="muted">Name</label>
+ <input id="name" class="input" required="">
+ </div>
+ <div class="field">
+ <label class="muted">Email</label>
+ <input id="email" class="input" type="email" required="">
+ </div>
+ <div class="field">
+ <label class="muted">Message</label>
+ <textarea id="message" class="input" rows="4" placeholder="I&#39;m interested in this
+property..."></textarea>
+ </div>
+ <div style="display:flex; gap:8px; justify-content:flex-end">
+ <button type="button" class="btn-ghost" id="cancelModal">Cancel</button>
+ <button class="btn-primary" type="submit">Send</button>
+ </div>
+ </form>
+ <div id="inqSuccess" style="display:none; margin-top:12px; background:rgba(0,255,140,0.06);
+padding:10px; border-radius:8px; color:#adffcc">Message sent — we'll contact you soon.</div>
+ </div>
+</div>
+<footer>
+ © <strong>Homing.com</strong> — demo UI inspired by modern property platforms.
+</footer>
+<script>
+/* ---------------------------
+ Sample data + app state
+ --------------------------- */
+const data = [
+ {id:1, title:"3 BHK Premium Apartment — Golf Course Road", city:"Gurgaon", price:125, beds:3,
+area:"1450 sqft", img:"https://picsum.photos/seed/h1/1200/800", tags:["Pool","Gym"]},
+ {id:2, title:"2 BHK Modern Home near Metro", city:"Noida", price:68, beds:2, area:"980 sqft",
+img:"https://picsum.photos/seed/h2/1200/800", tags:["Parking"]},
+ {id:3, title:"4 BHK Luxury Villa with Garden", city:"Ghaziabad", price:260, beds:4, area:"2600
+sqft", img:"https://picsum.photos/seed/h3/1200/800", tags:["Garden","Parking"]},
+ {id:4, title:"1 BHK Cozy Studio — Investment Special", city:"Delhi", price:34, beds:1, area:"450
+sqft", img:"https://picsum.photos/seed/h4/1200/800", tags:[]},
+ {id:5, title:"Sea-facing 3 BHK — Premium Project", city:"Gurgaon", price:320, beds:3, area:"1800
+sqft", img:"https://picsum.photos/seed/h5/1200/800", tags:["Pool","Gym"]},
+ {id:6, title:"Independent House 4BHK — Spacious", city:"Ghaziabad", price:195, beds:4,
+area:"2200 sqft", img:"https://picsum.photos/seed/h6/1200/800", tags:["Parking","Garden"]},
+ {id:7, title:"Contemporary 2 BHK — Close to Schools", city:"Noida", price:78, beds:2, area:"1100
+sqft", img:"https://picsum.photos/seed/h7/1200/800", tags:["Gym"]},
+ {id:8, title:"Plot 200 Sq Yd — Prime Location", city:"Faridabad", price:45, beds:0, area:"200 sq
+yd", img:"https://picsum.photos/seed/h8/1200/800", tags:[]}
+];
+let filtered = [...data];
+let perPage = 8;
+let current = perPage;
+/* ---------------------------
+ DOM refs
+ --------------------------- */
+const cards = document.getElementById('cards');
+const resultCount = document.getElementById('resultCount');
+const searchBtn = document.getElementById('searchBtn');
+const qInput = document.getElementById('q');
+const typeSel = document.getElementById('type');
+const bedsSel = document.getElementById('beds');
+const applyBtn = document.getElementById('apply');
+const resetBtn = document.getElementById('reset');
+const sortSel = document.getElementById('sort');
+const minPrice = document.getElementById('minPrice');
+const maxPrice = document.getElementById('maxPrice');
+const perPageSel = document.getElementById('perPage');
+const loadMore = document.getElementById('loadMore');
+const openFiltersBtn = document.getElementById('openFilters');
+/* Modal */
+const modal = document.getElementById('modal');
+const quickInquire = document.getElementById('quickInquire');
+const closeModal = document.getElementById('closeModal');
+const cancelModal = document.getElementById('cancelModal');
+const inqForm = document.getElementById('inqForm');
+const inqSuccess = document.getElementById('inqSuccess');
+/* ---------------------------
+ Rendering
+ --------------------------- */
+function formatPrice(lakhs){
+ if(lakhs >= 100) return ' ' + (lakhs/100).toFixed(lakhs%100===0?0:2) + ' Cr';
+ return ' ' + lakhs + ' L';
+}
+function render(){
+ cards.innerHTML = '';
+ const slice = filtered.slice(0, current);
+ if(!slice.length){
+ cards.innerHTML = '<div style="padding:20px;background:rgba(255,255,255,0.02);borderradius:12px;color:var(--muted)">No results — try broadening filters.</div>';
+ resultCount.textContent = 'Showing 0 results';
+ loadMore.style.display = 'none';
+ return;
+ }
+ for(const p of slice){
+ const el = document.createElement('article');
+ el.className = 'card';
+ el.innerHTML = `
+ <img src="${p.img}" alt="${escape(p.title)}" loading="lazy" />
+ <div class="card-body">
+ <div style="display:flex; justify-content:space-between; align-items:flex-start;">
+ <div>
+ <h4 class="prop-title">${escape(p.title)}</h4>
+ <div class="prop-meta">${escape(p.city)} • ${escape(p.area)}</div>
+ </div>
+ <div style="text-align:right">
+ <div class="price">${formatPrice(p.price)}</div>
+ <div class="muted" style="font-size:13px">${p.beds? p.beds + ' BHK':''}</div>
+ </div>
+ </div>
+ <div class="prop-row" style="margin-top:8px">
+ ${p.tags.map(t=>`<span class="chip">${escape(t)}</span>`).join('')}
+ <span class="chip">${p.beds? p.area : p.area}</span>
+ </div>
+ <div style="display:flex; justify-content:space-between; align-items:center; margin-top:12px">
+ <div class="card-actions">
+ <button class="btn-ghost view" data-id="${p.id}">View</button>
+ <button class="btn-ghost save" data-id="${p.id}">Save</button>
+ </div>
+ <div>
+ <button class="btn-primary inquire" data-id="${p.id}">Inquire</button>
+ </div>
+ </div>
+ </div>
+ `;
+ cards.appendChild(el);
+ }
+ resultCount.textContent = `Showing ${Math.min(filtered.length, current)} of ${filtered.length}
+results`;
+ loadMore.style.display = filtered.length > current ? 'inline-flex' : 'none';
+}
+/* ---------------------------
+ Filtering logic
+ --------------------------- */
+function applyFilters(){
+ const q = qInput.value.trim().toLowerCase();
+ const t = typeSel.value;
+ const beds = bedsSel.value ? parseInt(bedsSel.value,10) : 0;
+ const minP = parseFloat(minPrice.value) || 0;
+ const maxP = parseFloat(maxPrice.value) || Infinity;
+ const sort = sortSel.value;
+ filtered = data.filter(p=>{
+ if(t && p.type !== t && t !== '') {
+ // our sample data doesn't have explicit type field on all items;
+ // we'll match title as fallback
+ if(!p.title.toLowerCase().includes(t.toLowerCase())) return false;
+ }
+ if(beds && p.beds < beds) return false;
+ if(p.price < minP) return false;
+ if(p.price > maxP) return false;
+ if(q){
+ const hay = (p.title + ' ' + p.city + ' ' + p.tags.join(' ') + ' ' + p.area).toLowerCase();
+ if(!hay.includes(q)) return false;
+ }
+ return true;
+ });
+ if(sort === 'price-asc') filtered.sort((a,b)=>a.price-b.price);
+ if(sort === 'price-desc') filtered.sort((a,b)=>b.price-a.price);
+ current = perPage;
+ render();
+}
+/* ---------------------------
+ Events
+ --------------------------- */
+searchBtn.addEventListener('click', ()=>{ applyFilters();
+window.scrollTo({top:220,behavior:'smooth'}) });
+openFiltersBtn.addEventListener('click', ()=>{
+document.getElementById('filterPanel').scrollIntoView({behavior:'smooth'}); });
+applyBtn.addEventListener('click', ()=> applyFilters());
+resetBtn.addEventListener('click', ()=>{
+ qInput.value=''; typeSel.value=''; bedsSel.value=''; minPrice.value=''; maxPrice.value='';
+sortSel.value='relevance';
+ filtered = [...data]; current = perPage; render();
+});
+perPageSel.addEventListener('change', ()=>{
+ perPage = parseInt(perPageSel.value,10); current = perPage; render();
+});
+loadMore.addEventListener('click', ()=>{
+ current += perPage; render();
+});
+/* Delegated card actions */
+cards.addEventListener('click', (e)=>{
+ const v = e.target.closest('.view');
+ const s = e.target.closest('.save');
+ const i = e.target.closest('.inquire');
+ if(v){ const id = v.dataset.id; alert('Open details for ID: ' + id); }
+ if(s){ alert('Saved to your shortlist (demo).'); }
+ if(i){ openModal(); }
+});
+/* Floating inquiry + modal */
+quickInquire.addEventListener('click', openModal);
+function openModal(){
+ modal.style.display = 'flex';
+ modal.setAttribute('aria-hidden','false');
+}
+closeModal.addEventListener('click', closeModalFn);
+cancelModal.addEventListener('click', closeModalFn);
+function closeModalFn(){ modal.style.display='none'; modal.setAttribute('aria-hidden','true');
+inqSuccess.style.display='none'; inqForm.style.display='block'; inqForm.reset(); }
+inqForm.addEventListener('submit', (e)=>{
+ e.preventDefault();
+ // simple demo: show success
+ inqForm.style.display='none';
+ inqSuccess.style.display='block';
+ setTimeout(()=> closeModalFn(), 1800);
+});
+/* amenity toggles (for demo visual effect) */
+document.querySelectorAll('.amenity').forEach(btn=>{
+ btn.addEventListener('click', ()=>{
+ btn.classList.toggle('active');
+ if(btn.classList.contains('active')){
+ btn.style.background='linear-gradient(90deg,#7b6bff,#00d4ff)'; btn.style.color='white';
+ } else {
+ btn.style.background='transparent'; btn.style.color='';
+ }
+ });
+});
+/* initial render */
+filtered = [...data];
+render();
+/* small helper */
+function escape(s){ return
+String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'); }
+</script>
+</body></html>
