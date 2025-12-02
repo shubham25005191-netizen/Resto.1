@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)file:///C:/Users/shiva/OneDrive/Desktop/recppppp.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <title>zest&amp;food — Recipe Blog</title>
+ <link href="./zest&amp;food — Recipe Blog_files/css2" rel="stylesheet">
+ <style>
+ :root{
+ --bg:#fff8f2;
+ --card:#ffffff;
+ --muted:#6b6b6b;
+ --accent:#ff7a59;
+ --accent-dark:#e65f3f;
+ --glass: rgba(0,0,0,0.04);
+ --radius:12px;
+ --maxw:1100px;
+ }
+ *{box-sizing:border-box}
+ body{
+ margin:0;
+ font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+ background:linear-gradient(180deg,#fff8f2,#fffdfb);
+ color:#222;
+ -webkit-font-smoothing:antialiased;
+ }
+ .wrap{max-width:var(--maxw);margin:26px auto;padding:18px}
+ header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+ .brand{display:flex;align-items:center;gap:12px}
+ .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--
+accent),#ffd2c1);display:grid;place-items:center;font-weight:700;color:#fff}
+ h1{font-size:20px;margin:0}
+ .muted{color:var(--muted);font-size:14px}
+ /* search area */
+ .searchbar{display:flex;gap:10px;margin-top:16px}
+ .searchbar input, .searchbar select{
+ padding:10px 12px;border-radius:10px;border:1px solid var(--glass);background:var(--
+card);outline:none;flex:1;
+ font-size:14px;color:inherit;
+ }
+ .searchbar button{padding:10px 14px;background:var(--accent);border:none;color:white;border-
+radius:10px;cursor:pointer;font-weight:600}
+ /* layout grid */
+ .grid{display:grid;grid-template-columns:1fr 320px;gap:20px;margin-top:18px}
+ .card{background:var(--card);padding:14px;border-radius:12px;border:1px solid var(--
+glass);box-shadow:0 8px 30px rgba(0,0,0,0.04)}
+ .recipe-list{display:grid;gap:12px}
+ .recipe{display:flex;gap:12px;align-items:flex-start;padding:10px;border-radius:10px;border:1px
+solid rgba(0,0,0,0.02)}
+ .thumb{width:120px;height:84px;border-radius:8px;overflow:hidden;flexshrink:0;background:#eee}
+ .thumb img{width:100%;height:100%;object-fit:cover;display:block}
+ .info h3{margin:0;font-size:16px}
+ .info p{margin:6px 0 0;color:var(--muted);font-size:13px}
+ .meta{display:flex;gap:8px;align-items:center;margin-top:8px}
+ .badge{background:linear-gradient(90deg,#ffd9cc,#fff2ea);padding:6px 8px;borderradius:999px;font-size:12px;color:#7a3a2b;border:1px solid rgba(0,0,0,0.02)}
+ .rating{display:flex;gap:6px;align-items:center;font-weight:600}
+ /* star rating visuals */
+ .stars{display:inline-flex;gap:6px;cursor:pointer}
+ .star{width:18px;height:18px;display:inline-block;background:lineargradient(180deg,#ffd27a,#ffb347);-webkit-mask: url('data:image/svg+xml;utf8,<svg
+xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23000" d="M12
+.587l3.668 7.431 8.2 1.193-5.934 5.782 1.402 8.174L12 18.896l-7.336 3.872 1.402-8.174L.132
+9.211l8.2-1.193z"/></svg>') center/contain no-repeat; mask: url('data:image/svg+xml;utf8,<svg
+xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23000" d="M12
+.587l3.668 7.431 8.2 1.193-5.934 5.782 1.402 8.174L12 18.896l-7.336 3.872 1.402-8.174L.132
+9.211l8.2-1.193z"/></svg>') center/contain no-repeat;
+ }
+ .star.empty{background:linear-gradient(180deg,#efefef,#e0e0e0);opacity:0.85}
+ .star.small{width:14px;height:14px}
+ /* modal */
+ .modal-back{position:fixed;inset:0;background:rgba(0,0,0,0.45);display:none;alignitems:center;justify-content:center;z-index:9999;padding:20px}
+ .modal{max-width:900px;width:100%;max-height:90vh;overflow:auto;background:var(--
+card);padding:18px;border-radius:12px;border:1px solid var(--glass)}
+ .modal .top{display:flex;gap:16px;align-items:flex-start}
+ .modal .modal-thumb{width:260px;height:160px;borderradius:10px;overflow:hidden;background:#ddd}
+ .modal .modal-thumb img{width:100%;height:100%;object-fit:cover}
+ /* responsive */
+ @media (max-width:980px){ .grid{grid-template-columns:1fr} .thumb{width:92px;height:68px}
+.modal .top{flex-direction:column} .modal .modal-thumb{width:100%;height:220px} }
+ footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
+ .note{font-size:13px;color:var(--muted);margin-top:8px}
+ .small{font-size:13px;color:var(--muted)}
+ </style>
+</head>
+<body>
+ <div class="wrap">
+ <header>
+ <div class="brand">
+ <div class="logo">z&amp;f</div>
+ <div>
+ <h1>Zest&amp;Food</h1>
+ <div class="muted">Search recipes, read instructions &amp; rate them</div>
+ </div>
+ </div>
+ <div class="small">Demo • Local ratings saved in this browser</div>
+ </header>
+ <div class="searchbar">
+ <input id="searchInput" placeholder="Search recipes or ingredients (e.g. chicken, biryani,
+pancakes)">
+ <select id="categorySelect">
+ <option value="">All categories</option>
+ <option>Breakfast</option>
+ <option>Lunch</option>
+ <option>Dinner</option>
+ <option>Dessert</option>
+ <option>Snacks</option>
+ </select>
+ <select id="sortSelect" style="width:170px">
+ <option value="relevance">Sort: Relevance</option>
+ <option value="rating">Sort: Rating (High Low)</option>
+ <option value="time">Sort: Time (Short Long)</option>
+ </select>
+ <button id="searchBtn">Search</button>
+ </div>
+ <div class="grid">
+ <main>
+ <div class="card">
+ <div style="display:flex;justify-content:space-between;align-items:center">
+ <h2 style="margin:0">Latest Recipes</h2>
+ <div class="muted" id="resultInfo">Showing 5 recipes</div>
+ </div>
+ <div style="height:12px"></div>
+ <div id="recipeList" class="recipe-list"><div class="recipe">
+ <div class="thumb"><img src="./zest&amp;food — Recipe Blog_files/best-homemadepancakes-index-640775a2dbad8.jpg" alt="Classic Pancakes"></div>
+ <div class="info" style="flex:1">
+ <h3>Classic Pancakes</h3>
+ <div class="muted">Fluffy pancakes perfect for a weekend breakfast.</div>
+ <div class="meta">
+ <div class="badge">Breakfast</div>
+ <div class="muted" style="font-size:13px">25 mins • Easy</div>
+ <div class="rating"><span class="star star small" aria-hidden="true"></span><span
+class="star star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span><span class="star
+empty star small" aria-hidden="true"></span> <span style="margin-left:6px;fontsize:13px;color:var(--muted)">4 (1)</span></div>
+ </div>
+ <div style="height:8px"></div>
+ <div style="display:flex;gap:8px">
+ <button class="openBtn" data-id="r1">View</button>
+ <button class="rateQuickBtn" data-id="r1">Quick Rate</button>
+ </div>
+ </div>
+ </div><div class="recipe">
+ <div class="thumb"><img src="./zest&amp;food — Recipe Blog_files/Masala-Omelette32.jpg" alt="Masala Omelette"></div>
+ <div class="info" style="flex:1">
+ <h3>Masala Omelette</h3>
+ <div class="muted">Spicy, quick omelette with onions, chilies and fresh herbs.</div>
+ <div class="meta">
+ <div class="badge">Breakfast</div>
+ <div class="muted" style="font-size:13px">10 mins • Easy</div>
+ <div class="rating"><span class="star star small" aria-hidden="true"></span><span
+class="star star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span><span class="star
+star small" aria-hidden="true"></span> <span style="margin-left:6px;font-size:13px;color:var(--
+muted)">5 (1)</span></div>
+ </div>
+ <div style="height:8px"></div>
+ <div style="display:flex;gap:8px">
+ <button class="openBtn" data-id="r2">View</button>
+ <button class="rateQuickBtn" data-id="r2">Quick Rate</button>
+ </div>
+ </div>
+ </div><div class="recipe">
+ <div class="thumb"><img src="./zest&amp;food — Recipe Blog_files/veg-biryani-tempting600nw-2583130989.jpg" alt="Veg Biryani"></div>
+ <div class="info" style="flex:1">
+ <h3>Veg Biryani</h3>
+ <div class="muted">Fragrant layered rice with vegetables and spices.</div>
+ <div class="meta">
+ <div class="badge">Lunch</div>
+ <div class="muted" style="font-size:13px">75 mins • Medium</div>
+ <div class="rating"><span class="star star small" aria-hidden="true"></span><span
+class="star star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span><span class="star
+empty star small" aria-hidden="true"></span> <span style="margin-left:6px;fontsize:13px;color:var(--muted)">4 (2)</span></div>
+ </div>
+ <div style="height:8px"></div>
+ <div style="display:flex;gap:8px">
+ <button class="openBtn" data-id="r3">View</button>
+ <button class="rateQuickBtn" data-id="r3">Quick Rate</button>
+ </div>
+ </div>
+ </div><div class="recipe">
+ <div class="thumb"><img src="./zest&amp;food — Recipe Blog_files/Brownie-Recipe-withCocoa-Powder-1200x821.jpg" alt="Chocolate Brownies"></div>
+ <div class="info" style="flex:1">
+ <h3>Chocolate Brownies</h3>
+ <div class="muted">Rich, fudgy brownies with a crackly top.</div>
+ <div class="meta">
+ <div class="badge">Dessert</div>
+ <div class="muted" style="font-size:13px">40 mins • Easy</div>
+ <div class="rating"><span class="star star small" aria-hidden="true"></span><span
+class="star star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span><span class="star
+empty star small" aria-hidden="true"></span> <span style="margin-left:6px;fontsize:13px;color:var(--muted)">4 (1)</span></div>
+ </div>
+ <div style="height:8px"></div>
+ <div style="display:flex;gap:8px">
+ <button class="openBtn" data-id="r4">View</button>
+ <button class="rateQuickBtn" data-id="r4">Quick Rate</button>
+ </div>
+ </div>
+ </div><div class="recipe">
+ <div class="thumb"><img src="./zest&amp;food — Recipe
+Blog_files/ghk030125chanamasala-67ab7fce1ca47.jpg" alt="Chana Masala"></div>
+ <div class="info" style="flex:1">
+ <h3>Chana Masala</h3>
+ <div class="muted">Tangy spiced chickpea curry, great with rice or roti.</div>
+ <div class="meta">
+ <div class="badge">Dinner</div>
+ <div class="muted" style="font-size:13px">45 mins • Medium</div>
+ <div class="rating"><span class="star star small" aria-hidden="true"></span><span
+class="star star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span><span class="star
+star small" aria-hidden="true"></span> <span style="margin-left:6px;font-size:13px;color:var(--
+muted)">5 (1)</span></div>
+ </div>
+ <div style="height:8px"></div>
+ <div style="display:flex;gap:8px">
+ <button class="openBtn" data-id="r5">View</button>
+ <button class="rateQuickBtn" data-id="r5">Quick Rate</button>
+ </div>
+ </div>
+ </div></div>
+ <div class="note">Tip: Click a recipe to view full details and rate it.</div>
+ </div>
+ </main>
+ <aside>
+ <div class="card">
+ <h3 style="margin:0 0 8px">Top Rated</h3>
+ <div id="topRated" style="display:grid;gap:8px"><div style="display: flex; justify-content:
+space-between; align-items: center;"><div><strong>Masala Omelette</strong><div class="muted"
+style="font-size:13px">1 rating(s)</div></div><div style="text-align:right">5/5<br><span
+class="star star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span><span class="star
+star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span></div></div><div style="display: flex; justify-content: space-between; alignitems: center;"><div><strong>Chana Masala</strong><div class="muted" style="font-size:13px">1
+rating(s)</div></div><div style="text-align:right">5/5<br><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span><span class="star
+star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span></div></div><div
+style="display: flex; justify-content: space-between; align-items: center;"><div><strong>Classic
+Pancakes</strong><div class="muted" style="font-size:13px">1 rating(s)</div></div><div
+style="text-align:right">4/5<br><span class="star star small" aria-hidden="true"></span><span
+class="star star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span><span class="star
+empty star small" aria-hidden="true"></span></div></div></div>
+ </div>
+ <div class="card" style="margin-top:12px">
+ <h3 style="margin:0 0 8px">Your Ratings</h3>
+ <div id="yourRatings" class=""><div style="display: flex; justify-content: space-between;
+align-items: center; padding: 6px 0px;"><div><strong>Classic Pancakes</strong><div
+class="muted" style="font-size:13px">1 rating(s)</div></div><div>4/5<br><span class="star star
+small" aria-hidden="true"></span><span class="star star small" aria-hidden="true"></span><span
+class="star star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span><span class="star empty star small" ariahidden="true"></span></div></div><div style="display: flex; justify-content: space-between; alignitems: center; padding: 6px 0px;"><div><strong>Masala Omelette</strong><div class="muted"
+style="font-size:13px">1 rating(s)</div></div><div>5/5<br><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span><span class="star
+star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span></div></div><div
+style="display: flex; justify-content: space-between; align-items: center; padding: 6px
+0px;"><div><strong>Veg Biryani</strong><div class="muted" style="font-size:13px">2
+rating(s)</div></div><div>4/5<br><span class="star star small" aria-hidden="true"></span><span
+class="star star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span><span class="star
+empty star small" aria-hidden="true"></span></div></div><div style="display: flex; justify-content:
+space-between; align-items: center; padding: 6px 0px;"><div><strong>Chocolate
+Brownies</strong><div class="muted" style="font-size:13px">1
+rating(s)</div></div><div>4/5<br><span class="star star small" aria-hidden="true"></span><span
+class="star star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span><span class="star
+empty star small" aria-hidden="true"></span></div></div><div style="display: flex; justify-content:
+space-between; align-items: center; padding: 6px 0px;"><div><strong>Chana
+Masala</strong><div class="muted" style="font-size:13px">1
+rating(s)</div></div><div>5/5<br><span class="star star small" aria-hidden="true"></span><span
+class="star star small" aria-hidden="true"></span><span class="star star small" ariahidden="true"></span><span class="star star small" aria-hidden="true"></span><span class="star
+star small" aria-hidden="true"></span></div></div></div>
+ </div>
+ </aside>
+ </div>
+ <footer>zest&amp;food • Demo • Ratings saved in your browser</footer>
+ </div>
+ <!-- modal -->
+ <div class="modal-back" id="modalBack" aria-hidden="true" style="display: none;">
+ <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+ <div style="display:flex;justify-content:space-between;align-items:center">
+ <h2 id="modalTitle">Chana Masala</h2>
+ <div><button id="closeModal">Close</button></div>
+ </div>
+ <div style="height:10px"></div>
+ <div class="top">
+ <div class="modal-thumb"><img id="modalImg" src="./zest&amp;food — Recipe
+Blog_files/photo-1605475128563-7a5b4b0103c8" alt=""></div>
+ <div style="flex:1">
+ <div class="muted" id="modalMeta">Dinner • 45 mins • Medium</div>
+ <div style="height:8px"></div>
+ <div id="modalDesc" class="muted">Tangy spiced chickpea curry, great with rice or
+roti.</div>
+ <div style="height:12px"></div>
+ <div>
+ <div class="muted">Ingredients</div>
+ <ul id="modalIngredients"><li>Chickpeas</li><li>Onion</li><li>Tomato</li><li>Chana
+masala spice</li><li>Garlic</li><li>Ginger</li><li>Oil</li></ul>
+ </div>
+ <div style="height:12px"></div>
+ <div>
+ <div class="muted">Instructions</div>
+ <div id="modalInstructions" class="muted" style="margin-top:6px">Sauté onions, garlic
+and ginger. Add tomatoes &amp; spices. Add chickpeas and simmer for 20–25 mins.</div>
+ </div>
+ <div style="height:14px"></div>
+ <div>
+ <div class="muted">Rate this recipe</div>
+ <div style="height:6px"></div>
+ <div id="rateStars" class="stars" aria-label="Rate recipe (1–5)"><span class="star" datavalue="1" style="cursor: pointer;"></span><span class="star" data-value="2" style="cursor:
+pointer;"></span><span class="star" data-value="3" style="cursor: pointer;"></span><span
+class="star" data-value="4" style="cursor: pointer;"></span><span class="star" data-value="5"
+style="cursor: pointer;"></span></div>
+ <div class="note" id="ratingNote">Thanks! You rated 4/5. Updated average: 4/5 (2
+rating(s)).</div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+ <script>
+ /***********************
+ * Demo dataset
+ ***********************/
+ const RECIPES = [
+ {
+ id: 'r1',
+ title: 'Classic Pancakes',
+ category: 'Breakfast',
+ timeMins: 25,
+ difficulty: 'Easy',
+ thumbnail: 'https://images.unsplash.com/photo-1551218808-
+94e220e084d2?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=1',
+ summary: 'Fluffy pancakes perfect for a weekend breakfast.',
+ ingredients: ['1 cup flour','1 tbsp sugar','1 cup milk','1 egg','2 tbsp butter','1 tsp baking
+powder','Pinch of salt'],
+ instructions: 'Mix dry ingredients. Whisk wet ingredients separately. Combine gently. Cook on
+a hot pan 2–3 mins each side. Serve with syrup.',
+ },
+ {
+ id: 'r2',
+ title: 'Masala Omelette',
+ category: 'Breakfast',
+ timeMins: 10,
+ difficulty: 'Easy',
+ thumbnail: 'https://images.unsplash.com/photo-1563805042-
+7684c019e1cb?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=2',
+ summary: 'Spicy, quick omelette with onions, chilies and fresh herbs.',
+ ingredients: ['2 eggs','1 small onion finely chopped','1 green chili chopped','Salt & pepper','1
+tbsp oil','Fresh coriander'],
+ instructions: 'Beat eggs with salt & pepper. Add onions, chili and coriander. Pour into hot pan
+with oil and cook both sides.',
+ },
+ {
+ id: 'r3',
+ title: 'Veg Biryani',
+ category: 'Lunch',
+ timeMins: 75,
+ difficulty: 'Medium',
+ thumbnail: 'https://images.unsplash.com/photo-1604908177522-
+5b9b0b1a6a59?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=3',
+ summary: 'Fragrant layered rice with vegetables and spices.',
+ ingredients: ['Basmati rice','Mixed vegetables','Biryani
+masala','Onion','Tomato','Yogurt','Ghee'],
+ instructions: 'Parboil rice. Cook vegetables with spices. Layer rice and veg, cook on low flame
+for 20–25 mins (dum).',
+ },
+ {
+ id: 'r4',
+ title: 'Chocolate Brownies',
+ category: 'Dessert',
+ timeMins: 40,
+ difficulty: 'Easy',
+ thumbnail: 'https://images.unsplash.com/photo-1604908177522-
+7d6a1b1a3c61?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=4',
+ summary: 'Rich, fudgy brownies with a crackly top.',
+ ingredients: ['Dark chocolate','Butter','Sugar','Flour','Eggs','Cocoa powder'],
+ instructions: 'Melt chocolate & butter. Mix sugar and eggs, add chocolate, then flour & cocoa.
+Bake at 180°C for ~25 mins.',
+ },
+ {
+ id: 'r5',
+ title: 'Chana Masala',
+ category: 'Dinner',
+ timeMins: 45,
+ difficulty: 'Medium',
+ thumbnail: 'https://images.unsplash.com/photo-1605475128563-
+7a5b4b0103c8?q=80&w=1200&auto=format&fit=crop&ixlib=rb-4.0.3&s=5',
+ summary: 'Tangy spiced chickpea curry, great with rice or roti.',
+ ingredients: ['Chickpeas','Onion','Tomato','Chana masala spice','Garlic','Ginger','Oil'],
+ instructions: 'Sauté onions, garlic and ginger. Add tomatoes & spices. Add chickpeas and
+simmer for 20–25 mins.',
+ }
+ ];
+ /***********************
+ * Storage keys & helpers
+ ***********************/
+ const RATINGS_KEY = 'recipe_blog_ratings_v1';
+ function getStoredRatings(){
+ try{
+ return JSON.parse(localStorage.getItem(RATINGS_KEY) || '{}');
+ } catch(e){ return {}; }
+ }
+ function saveRatings(obj){ localStorage.setItem(RATINGS_KEY, JSON.stringify(obj)); }
+ // returns {count, avg}
+ function computeAggregate(id){
+ const ratings = getStoredRatings()[id] || [];
+ if(ratings.length === 0) return {count:0, avg:0};
+ const sum = ratings.reduce((a,b)=>a+b,0);
+ return {count:ratings.length, avg: +(sum/ratings.length).toFixed(2)};
+ }
+ /***********************
+ * Rendering functions
+ ***********************/
+ const recipeListEl = document.getElementById('recipeList');
+ const topRatedEl = document.getElementById('topRated');
+ const yourRatingsEl = document.getElementById('yourRatings');
+ const resultInfoEl = document.getElementById('resultInfo');
+ function renderList(list){
+ recipeListEl.innerHTML = '';
+ if(list.length === 0){
+ recipeListEl.innerHTML = '<div class="muted">No recipes found. Try another search or
+category.</div>';
+ }
+ list.forEach(r=>{
+ const agg = computeAggregate(r.id);
+ const el = document.createElement('div');
+ el.className = 'recipe';
+ el.innerHTML = `
+ <div class="thumb"><img src="${r.thumbnail}" alt="${escapeHtml(r.title)}"></div>
+ <div class="info" style="flex:1">
+ <h3>${escapeHtml(r.title)}</h3>
+ <div class="muted">${escapeHtml(r.summary)}</div>
+ <div class="meta">
+ <div class="badge">${escapeHtml(r.category)}</div>
+ <div class="muted" style="font-size:13px">${r.timeMins} mins •
+${escapeHtml(r.difficulty)}</div>
+ <div class="rating">${renderStarsInline(agg.avg)} <span style="margin-left:6px;fontsize:13px;color:var(--muted)">${agg.count?agg.avg+' ('+agg.count+')':'No ratings'}</span></div>
+ </div>
+ <div style="height:8px"></div>
+ <div style="display:flex;gap:8px">
+ <button class="openBtn" data-id="${r.id}">View</button>
+ <button class="rateQuickBtn" data-id="${r.id}">Quick Rate</button>
+ </div>
+ </div>
+ `;
+ recipeListEl.appendChild(el);
+ });
+ resultInfoEl.textContent = 'Showing ' + list.length + ' recipes';
+ attachListEvents();
+ renderTopRated();
+ renderYourRatings();
+ }
+ function renderStarsInline(avg){
+ // show 5 small stars; full colored if avg >= threshold
+ const starCount = 5;
+ let html = '';
+ for(let i=1;i<=starCount;i++){
+ const cls = (avg >= i - 0.25) ? 'star' : 'star empty';
+ html += `<span class="${cls} star small" aria-hidden="true"></span>`;
+ }
+ return html;
+ }
+ function renderTopRated(){
+ topRatedEl.innerHTML = '';
+ const rated = RECIPES.map(r=>{
+ const agg = computeAggregate(r.id);
+ return {recipe:r, avg:agg.avg, count:agg.count};
+ }).filter(x=>x.count>0).sort((a,b)=>b.avg - a.avg).slice(0,3);
+ if(rated.length === 0){
+ topRatedEl.innerHTML = '<div class="muted">No ratings yet. Be the first to rate a
+recipe!</div>';
+ return;
+ }
+ rated.forEach(item=>{
+ const div = document.createElement('div');
+ div.style.display='flex';div.style.justifyContent='space-between';div.style.alignItems='center';
+ div.innerHTML = `<div><strong>${escapeHtml(item.recipe.title)}</strong><div class="muted"
+style="font-size:13px">${item.count} rating(s)</div></div><div style="textalign:right">${item.avg}/5<br>${renderStarsInline(item.avg)}</div>`;
+ topRatedEl.appendChild(div);
+ });
+ }
+ function renderYourRatings(){
+ const ratings = getStoredRatings();
+ const ids = Object.keys(ratings);
+ if(ids.length === 0){
+ yourRatingsEl.className = 'muted';
+ yourRatingsEl.textContent = "You haven't rated any recipes yet.";
+ return;
+ }
+ yourRatingsEl.className = '';
+ yourRatingsEl.innerHTML = '';
+ ids.forEach(id=>{
+ const arr = ratings[id];
+ const avg = +(arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(2);
+ const rec = RECIPES.find(r=>r.id===id);
+ const div = document.createElement('div');
+ div.style.display='flex';div.style.justifyContent='space-
+between';div.style.alignItems='center';div.style.padding='6px 0';
+ div.innerHTML = `<div><strong>${escapeHtml(rec ? rec.title : id)}</strong><div
+class="muted" style="font-size:13px">${arr.length}
+rating(s)</div></div><div>${avg}/5<br>${renderStarsInline(avg)}</div>`;
+ yourRatingsEl.appendChild(div);
+ });
+ }
+ /***********************
+ * Search, filter & sort
+ ***********************/
+ function doSearch(){
+ const q = document.getElementById('searchInput').value.trim().toLowerCase();
+ const cat = document.getElementById('categorySelect').value;
+ const sort = document.getElementById('sortSelect').value;
+ let list = RECIPES.filter(r=>{
+ const matchQ = !q || r.title.toLowerCase().includes(q) || r.summary.toLowerCase().includes(q)
+|| r.ingredients.join(' ').toLowerCase().includes(q);
+ const matchCat = !cat || r.category === cat;
+ return matchQ && matchCat;
+ });
+ if(sort === 'rating'){
+ list = list.sort((a,b)=> computeAggregate(b.id).avg - computeAggregate(a.id).avg);
+ } else if(sort === 'time'){
+ list = list.sort((a,b)=> a.timeMins - b.timeMins);
+ }
+ renderList(list);
+ }
+ document.getElementById('searchBtn').addEventListener('click', doSearch);
+ document.getElementById('searchInput').addEventListener('keyup', (e)=>{ if(e.key === 'Enter')
+doSearch(); });
+ document.getElementById('categorySelect').addEventListener('change', doSearch);
+ document.getElementById('sortSelect').addEventListener('change', doSearch);
+ /***********************
+ * Modal & rating UI
+ ***********************/
+ const modalBack = document.getElementById('modalBack');
+ const modalTitle = document.getElementById('modalTitle');
+ const modalImg = document.getElementById('modalImg');
+ const modalMeta = document.getElementById('modalMeta');
+ const modalDesc = document.getElementById('modalDesc');
+ const modalIngredients = document.getElementById('modalIngredients');
+ const modalInstructions = document.getElementById('modalInstructions');
+ const rateStars = document.getElementById('rateStars');
+ const ratingNote = document.getElementById('ratingNote');
+ function openModal(id){
+ const r = RECIPES.find(x=>x.id===id);
+ if(!r) return;
+ modalTitle.textContent = r.title;
+ modalImg.src = r.thumbnail;
+ modalMeta.textContent = `${r.category} • ${r.timeMins} mins • ${r.difficulty}`;
+ modalDesc.textContent = r.summary;
+ modalIngredients.innerHTML = r.ingredients.map(i=>`<li>${escapeHtml(i)}</li>`).join('');
+ modalInstructions.textContent = r.instructions;
+ // render rating stars interactive
+ renderInteractiveStars(id);
+ modalBack.style.display = 'flex';
+ modalBack.setAttribute('aria-hidden','false');
+ }
+ document.getElementById('closeModal').addEventListener('click', closeModal);
+ modalBack.addEventListener('click', (e)=>{ if(e.target === modalBack) closeModal(); });
+ function closeModal(){
+ modalBack.style.display = 'none';
+ modalBack.setAttribute('aria-hidden','true');
+ }
+ function renderInteractiveStars(recipeId){
+ rateStars.innerHTML = '';
+ ratingNote.textContent = '';
+ const existing = getStoredRatings()[recipeId] || [];
+ const avg = existing.length ? +(existing.reduce((a,b)=>a+b,0)/existing.length).toFixed(2) : 0;
+ if(existing.length) ratingNote.textContent = `Current average: ${avg}/5 from ${existing.length}
+rating(s).`;
+ for(let i=1;i<=5;i++){
+ const span = document.createElement('span');
+ span.className = (i <= Math.round(avg)) ? 'star' : 'star empty';
+ span.dataset.value = i;
+ span.style.cursor = 'pointer';
+ span.addEventListener('mouseenter', ()=> highlightStars(rateStars, i));
+ span.addEventListener('mouseleave', ()=> highlightStars(rateStars, Math.round(avg)));
+ span.addEventListener('click', ()=> submitRating(recipeId, i));
+ rateStars.appendChild(span);
+ }
+ }
+ function highlightStars(container, upto){
+ Array.from(container.children).forEach((ch, idx)=>{
+ ch.className = (idx < upto) ? 'star' : 'star empty';
+ });
+ }
+ function submitRating(recipeId, value){
+ const all = getStoredRatings();
+ if(!all[recipeId]) all[recipeId] = [];
+ all[recipeId].push(Number(value));
+ saveRatings(all);
+ // nice confirmation
+ ratingNote.textContent = `Thanks! You rated ${value}/5. Updated average:
+${computeAggregate(recipeId).avg}/5 (${computeAggregate(recipeId).count} rating(s)).`;
+ // refresh UI
+ renderList(RECIPES); // re-render main list
+ }
+ /***********************
+ * Inline quick rate (button)
+ ***********************/
+ function attachListEvents(){
+ document.querySelectorAll('.openBtn').forEach(b=>{
+ b.addEventListener('click', ()=> openModal(b.dataset.id));
+ });
+ document.querySelectorAll('.rateQuickBtn').forEach(b=>{
+ b.addEventListener('click', ()=>{
+ const id = b.dataset.id;
+ const val = prompt('Quick rate: Give a rating 1–5 (integer)');
+ if(!val) return;
+ const n = parseInt(val);
+ if(isNaN(n) || n < 1 || n > 5) return alert('Enter a valid integer between 1 and 5.');
+ submitRating(id,n);
+ });
+ });
+ }
+ /***********************
+ * Utilities
+ ***********************/
+ function escapeHtml(str){
+ if(!str) return '';
+ return String(str).replace(/[&<>"]/g, function(s){ return
+({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[s]);});
+ }
+ /***********************
+ * Initialise
+ ***********************/
+ // initial render
+ renderList(RECIPES);
+ // make sure top rated & your ratings show
+ renderTopRated();
+ renderYourRatings();
+ </script>
+</body></html>
